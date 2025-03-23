@@ -1,0 +1,38 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}designated driver{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                
+                    {% comment %} <li><a href="{% url 'heatmap' %}">Profile</a></li> {% endcomment %}
+                    {% comment %} <li><a href="{% url 'bookings-list' %}">Bookings</a></li>
+                    <li><a href="{% url 'notifications-list' %}">Notifications</a></li>
+                    <li><a href="{% url 'trips' %}">Trip</a></li> {% endcomment %}
+                
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% comment %} <li><a href="{% url 'users/register' %}">Register</a></li> {% endcomment %}
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ year }} Designated Driver</p>
+    </footer>
+    <script src="{% static 'js/api.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

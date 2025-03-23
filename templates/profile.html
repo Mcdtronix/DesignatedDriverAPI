@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <div id="profile-data"></div>
+{% endblock %}
+{% block scripts %}
+<script>
+    async function loadProfile() {
+        try {
+            const data = await getUserProfile();
+            document.getElementById('profile-data').innerHTML = JSON.stringify(data);
+        } catch (error) {
+            console.error('Failed to load profile:', error);
+        }
+    }
+    loadProfile();
+</script>
+{% endblock %}

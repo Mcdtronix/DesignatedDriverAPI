@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Notifications{% endblock %}
+{% block content %}
+    <h1>Notifications</h1>
+    <div id="notifications-list"></div>
+{% endblock %}
+{% block scripts %}
+<script>
+    async function loadNotifications() {
+        try {
+            const data = await apiCall('notifications/');
+            let notificationsHtml = '';
+            data.forEach(notification => {
+                notificationsHtml += `<p>${notification.title}: ${notification.message}</p>`;
+            });
+            document.getElementById('notifications-list').innerHTML = notificationsHtml;
+        } catch (error) {
+            console.error('Failed to load notifications:', error);
+        }
+    }
+    loadNotifications();
+</script>
+{% endblock %}

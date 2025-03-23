@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Bookings{% endblock %}
+{% block content %}
+    <h1>Your Bookings</h1>
+    <div id="bookings-list"></div>
+{% endblock %}
+{% block scripts %}
+<script>
+    async function loadBookings() {
+        try {
+            const data = await apiCall('bookings/');
+            let bookingsHtml = '';
+            data.forEach(booking => {
+                bookingsHtml += `<p>Booking ID: ${booking.id}, Status: ${booking.status}</p>`;
+            });
+            document.getElementById('bookings-list').innerHTML = bookingsHtml;
+        } catch (error) {
+            console.error('Failed to load bookings:', error);
+        }
+    }
+    loadBookings();
+</script>
+{% endblock %}
